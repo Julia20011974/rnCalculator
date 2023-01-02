@@ -1,11 +1,19 @@
+import {Animated} from 'react-native';
 import styled from 'styled-components';
 
 export const KeypadContainer = styled.View`
     flex: 2;
-    flex-direction: row;
-    justify-content: space-between;
     margin: 0 auto;
     width: 308px;
+`;
+
+export const AnimatedKeypad = styled(Animated.View)`
+    flex: 1;
+    position: relative;
+    top: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 `;
 
 export const LeftButtons = styled.View`

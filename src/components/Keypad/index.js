@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
+import {Animated} from 'react-native';
 import {connect} from 'react-redux';
 
 import {
@@ -11,7 +12,12 @@ import {
 import {leftKeyMap, Operations, rightKeyMap} from '~constants';
 import {KeyButton} from '~ui/buttons/KeyButton';
 
-import {KeypadContainer, LeftButtons, RightButtons} from './styles';
+import {
+    AnimatedKeypad,
+    KeypadContainer,
+    LeftButtons,
+    RightButtons,
+} from './styles';
 
 export const mapDispatchToProps = dispatch => ({
     _onPressKeyButton: value => dispatch(calculatorUpdateDisplay(value)),
@@ -28,6 +34,16 @@ const Keypad = ({
     _onPressKeyEqualButton,
     _onPressAddHistory,
 }) => {
+    const appearanceAnim = useRef(new Animated.Value(350)).current;
+
+    useEffect(() => {
+        Animated.timing(appearanceAnim, {
+            toValue: 0,
+            duration: 5000,
+            useNativeDriver: false,
+        }).start();
+    }, [appearanceAnim]);
+
     const _onPress = value => () => {
         switch (value) {
             case Operations.ClearAll:
@@ -47,24 +63,26 @@ const Keypad = ({
 
     return (
         <KeypadContainer>
-            <LeftButtons>
-                {leftKeyMap.map(item => (
-                    <KeyButton
-                        key={item.value}
-                        {...item}
-                        onPress={_onPress(item.value)}
-                    />
-                ))}
-            </LeftButtons>
-            <RightButtons>
-                {rightKeyMap.map(item => (
-                    <KeyButton
-                        key={item.value}
-                        {...item}
-                        onPress={_onPress(item.value)}
-                    />
-                ))}
-            </RightButtons>
+            <AnimatedKeypad style={{right: appearanceAnim}}>
+                <LeftButtons>
+                    {leftKeyMap.map(item => (
+                        <KeyButton
+                            key={item.value}
+                            {...item}
+                            onPress={_onPress(item.value)}
+                        />
+                    ))}
+                </LeftButtons>
+                <RightButtons>
+                    {rightKeyMap.map(item => (
+                        <KeyButton
+                            key={item.value}
+                            {...item}
+                            onPress={_onPress(item.value)}
+                        />
+                    ))}
+                </RightButtons>
+            </AnimatedKeypad>
         </KeypadContainer>
     );
 };
