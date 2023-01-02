@@ -11,7 +11,7 @@ export const LabelContainer = styled.View`
 export const ExpressionContainer = styled.Text`
     font-size: 28px;
     width: 290px;
-    color: #fff;
+    color: ${({color}) => color};
     justify-content: center;
     text-align: right;
 `;

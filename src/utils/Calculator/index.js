@@ -17,7 +17,6 @@ const Calculator = function (value) {
             }
             return item;
         });
-        console.log('arr', arr);
     }
 
     function getPriority(str) {
@@ -44,9 +43,6 @@ const Calculator = function (value) {
 
         let tmpResult = 0;
 
-        console.log('leftOperand', leftOperand);
-        console.log('rightOperand', rightOperand);
-
         switch (operator) {
             case '+':
                 tmpResult = executer.execute(
@@ -68,8 +64,6 @@ const Calculator = function (value) {
                     new DivCommand(leftOperand, rightOperand),
                 );
         }
-
-        console.log(tmpResult);
 
         stack1.push(tmpResult);
     }

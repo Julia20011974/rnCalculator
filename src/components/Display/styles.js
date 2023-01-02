@@ -8,12 +8,12 @@ export const DisplayContainer = styled.View`
 
 export const TextOperation = styled.Text`
     font-size: ${({fontSize}) => fontSize}px;
-    color: #fff;
+    color: ${({color}) => color};
     text-align: right;
 `;
 
 export const TextAnswer = styled.Text`
     font-size: 48px;
-    color: #ffffff;
+    color: ${({color}) => color};
     text-align: right;
 `;

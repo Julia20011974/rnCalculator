@@ -30,6 +30,7 @@ const Keypad = ({
     _onPressKeyClearAllButton,
     _onPressKeyEqualButton,
     _onPressAddHistory,
+    theme,
 }) => {
     const _onPress = value => () => {
         switch (value) {
@@ -42,7 +43,6 @@ const Keypad = ({
             case Operations.Equal:
                 {
                     const calculator = Calculator(displayValue);
-
                     calculator.calculate();
 
                     _onPressKeyEqualButton(calculator.getResult());
@@ -60,6 +60,8 @@ const Keypad = ({
                 {leftKeyMap.map(item => (
                     <KeyButton
                         key={item.value}
+                        bgColor={theme.primaryKeyBgColor}
+                        valueColor={theme.primaryKeyTextColor}
                         {...item}
                         onPress={_onPress(item.value)}
                     />
@@ -69,6 +71,8 @@ const Keypad = ({
                 {rightKeyMap.map(item => (
                     <KeyButton
                         key={item.value}
+                        bgColor={theme.secondaryKeyBgColor}
+                        valueColor={theme.secondaryKeyTextColor}
                         {...item}
                         onPress={_onPress(item.value)}
                     />

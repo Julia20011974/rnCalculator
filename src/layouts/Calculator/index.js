@@ -4,18 +4,23 @@ import {Container} from 'theme';
 
 import {Display} from '~components/Display';
 import Keypad from '~components/Keypad';
-import {getDisplayAnswer, getDisplayValue} from '~selectors';
+import {getDisplayAnswer, getDisplayValue, getTheme} from '~selectors';
 
 const mapStateToProps = state => ({
     displayValue: getDisplayValue(state),
     displayAnswer: getDisplayAnswer(state),
+    theme: getTheme(state),
 });
 
-const Calculator = ({displayValue, displayAnswer}) => {
+const Calculator = ({displayValue, displayAnswer, theme}) => {
     return (
-        <Container>
-            <Display value={displayValue} answer={displayAnswer} />
-            <Keypad displayValue={displayValue} />
+        <Container bgColor={theme.bgColor}>
+            <Display
+                value={displayValue}
+                answer={displayAnswer}
+                theme={theme}
+            />
+            <Keypad displayValue={displayValue} theme={theme} />
         </Container>
     );
 };

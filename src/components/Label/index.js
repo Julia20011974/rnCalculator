@@ -4,10 +4,12 @@ import {CrossIcon} from '~ui/icons/CrossIcon';
 
 import {ExpressionContainer, IconContainer, LabelContainer} from './styles';
 
-const Label = ({expression, onPress}) => {
+const Label = ({expression, onPress, color}) => {
     return (
         <LabelContainer>
-            <ExpressionContainer>{expression}</ExpressionContainer>
+            <ExpressionContainer color={color}>
+                {expression}
+            </ExpressionContainer>
             <IconContainer>
                 <CrossIcon onPress={onPress} />
             </IconContainer>

@@ -1,10 +1,16 @@
 import React, {useCallback, useLayoutEffect} from 'react';
+import {connect} from 'react-redux';
 
 import {HISTORY} from '~constants';
 import Calculator from '~layouts/Calculator';
+import {getTheme} from '~selectors';
 import {GearsIcon} from '~ui/icons';
 
-const CalculatorScreen = ({navigation}) => {
+const mapStateToProps = state => ({
+    theme: getTheme(state),
+});
+
+const CalculatorScreen = ({navigation, theme}) => {
     const handlePressGeers = useCallback(
         () => navigation.navigate(HISTORY),
         [navigation],
@@ -12,12 +18,17 @@ const CalculatorScreen = ({navigation}) => {
 
     useLayoutEffect(() => {
         navigation.setOptions({
-            headerRight: () => <GearsIcon onPress={handlePressGeers} />,
-            headerStyle: {backgroundColor: '#17181A'},
-            headerTintColor: '#fff',
+            headerRight: () => (
+                <GearsIcon
+                    color={theme.iconsColor}
+                    onPress={handlePressGeers}
+                />
+            ),
+            headerStyle: {backgroundColor: theme.bgColor},
+            headerTintColor: theme.headerTitleColor,
         });
-    }, [navigation, handlePressGeers]);
+    }, [navigation, handlePressGeers, theme]);
 
     return <Calculator />;
 };
-export default CalculatorScreen;
+export default connect(mapStateToProps)(CalculatorScreen);
