@@ -1,6 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useEffect} from 'react';
+import SplashScreen from 'react-native-splash-screen';
 import {Provider} from 'react-redux';
 
 import {CALCULATOR, HISTORY} from '~constants';
@@ -11,6 +12,8 @@ import store from '~store';
 const Stack = createNativeStackNavigator();
 
 export const App = () => {
+    useEffect(() => SplashScreen.hide(), []);
+
     return (
         <Provider store={store}>
             <NavigationContainer>
