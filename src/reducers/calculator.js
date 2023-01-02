@@ -21,7 +21,7 @@ const calculatorReducer = (calculator, action) => {
         case CALCULATOR_EQUAL:
             return {
                 displayValue: calculator.displayValue,
-                displayAnswer: '=' + (1 + 1),
+                displayAnswer: '=' + action.payload.displayAnswer,
             };
         case CALCULATOR_UPDATE_DISPLAY:
             return {

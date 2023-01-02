@@ -15,7 +15,7 @@ const Calculator = ({displayValue, displayAnswer}) => {
     return (
         <Container>
             <Display value={displayValue} answer={displayAnswer} />
-            <Keypad displayValue={displayValue} displayAnswer={displayAnswer} />
+            <Keypad displayValue={displayValue} />
         </Container>
     );
 };

@@ -10,6 +10,7 @@ import {
 } from '~actions';
 import {leftKeyMap, Operations, rightKeyMap} from '~constants';
 import {KeyButton} from '~ui/buttons/KeyButton';
+import Calculator from '~utils/Calculator';
 
 import {KeypadContainer, LeftButtons, RightButtons} from './styles';
 
@@ -17,11 +18,13 @@ export const mapDispatchToProps = dispatch => ({
     _onPressKeyButton: value => dispatch(calculatorUpdateDisplay(value)),
     _onPressKeyClearButton: () => dispatch(calculatorClearKey()),
     _onPressKeyClearAllButton: () => dispatch(calculatorClearAll()),
-    _onPressKeyEqualButton: () => dispatch(calculatorEqual()),
+    _onPressKeyEqualButton: displayAnswer =>
+        dispatch(calculatorEqual(displayAnswer)),
     _onPressAddHistory: () => dispatch(historyAdd()),
 });
 
 const Keypad = ({
+    displayValue,
     _onPressKeyButton,
     _onPressKeyClearButton,
     _onPressKeyClearAllButton,
@@ -37,8 +40,14 @@ const Keypad = ({
                 _onPressKeyClearButton();
                 break;
             case Operations.Equal:
-                _onPressKeyEqualButton();
-                _onPressAddHistory();
+                {
+                    const calculator = Calculator(displayValue);
+
+                    calculator.calculate();
+
+                    _onPressKeyEqualButton(calculator.getResult());
+                    _onPressAddHistory();
+                }
                 break;
             default:
                 _onPressKeyButton(value);

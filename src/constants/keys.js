@@ -1,14 +1,14 @@
 export const Operations = {
     PlusMinus: '±',
-    LeftBracket: '(',
-    RightBracket: ')',
-    DivisionRemainder: '%',
+    LeftBracket: '( ',
+    RightBracket: ' )',
+    DivisionRemainder: ' % ',
     ClearAll: 'Ac',
     Clear: 'C',
-    Division: '/',
-    Multiplication: '*',
-    Minus: '-',
-    Plus: '+',
+    Division: ' / ',
+    Multiplication: ' * ',
+    Minus: ' - ',
+    Plus: ' + ',
     Equal: '=',
 };
 

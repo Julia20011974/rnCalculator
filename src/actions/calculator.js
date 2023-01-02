@@ -13,8 +13,11 @@ export const calculatorClearKey = () => ({
     type: CALCULATOR_CLEAR_KEY,
 });
 
-export const calculatorEqual = () => ({
+export const calculatorEqual = displayAnswer => ({
     type: CALCULATOR_EQUAL,
+    payload: {
+        displayAnswer,
+    },
 });
 
 export const calculatorUpdateDisplay = value => ({
