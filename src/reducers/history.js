@@ -12,7 +12,6 @@ const historyReducer = (state, action) => {
                 {
                     ...action.payload,
                     expression: state.calculator.displayValue.concat(
-                        '=',
                         state.calculator.displayAnswer,
                     ),
                 },
