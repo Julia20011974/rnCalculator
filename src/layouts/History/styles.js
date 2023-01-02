@@ -6,6 +6,6 @@ export const HistoryContainer = styled(Container)`
 `;
 
 export const HistoryText = styled.Text`
-    color: ${({theme}) => theme.tertiaryDisplayColor};
+    color: #fff;
     font-size: 22px;
 `;
